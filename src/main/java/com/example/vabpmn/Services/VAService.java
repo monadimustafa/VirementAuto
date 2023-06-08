@@ -1,22 +1,20 @@
 package com.example.vabpmn.Services;
 
 import com.example.vabpmn.Dto.VirementAutoDto;
-import com.example.vabpmn.Reositories.PJRepository;
 import com.example.vabpmn.Reositories.VARepository;
 import com.example.vabpmn.entities.VirementAuto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import java.io.IOException;
+
 import java.util.List;
 import java.util.stream.Collectors;
 import com.example.vabpmn.Mapper.mapper;
-import org.springframework.web.multipart.MultipartFile;
+
 @Service
 @AllArgsConstructor
 public class VAService {
 
     private VARepository vaRepository;
-    private PJRepository pjRepository;
     private mapper mapper;
 
     public List<VirementAutoDto> getListVADtoInit()
@@ -58,18 +56,8 @@ public class VAService {
     public VirementAutoDto initierVA(VirementAutoDto virementAutoDto)
     {
         VirementAuto virementAuto = mapper.fromVirementAujtoDto(virementAutoDto);
-        PieceJointe pieceJointe = this.uploadFile(virementAutoDto.);
-        virementAuto.setPieceJointe();
         VirementAuto viremSaved = vaRepository.save(virementAuto);
-
         VirementAutoDto virementAutoDto1 = mapper.fromVirementAuto(viremSaved);
         return virementAutoDto1;
-    }
-    public void uploadFile(MultipartFile file) throws IOException
-    {
-        uploadFile.setFileName(file.getOriginalFilename());
-        uploadFile.setFileType(file.getContentType());
-        uploadFile.setData(file.getBytes());
-        return pjRepository.save(uploadFile);
     }
 }

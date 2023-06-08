@@ -1,5 +1,6 @@
 package com.example.vabpmn.Dto;
 
+import jakarta.persistence.Lob;
 import lombok.Data;
 
 import java.util.Date;
@@ -16,5 +17,7 @@ public class VirementAutoDto {
     private boolean conforme;
     private String status;
     private String initiateur;
-    private PieceJointe pieceJointe;
+    private String name;
+    @Lob
+    private byte[] fileData;
 }
